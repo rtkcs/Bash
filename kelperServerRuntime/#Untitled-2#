@@ -1,0 +1,19 @@
+
+AdminTask.modifySIBJMSActivationSpec('cismaspracovanierfozdAS(cells/waslxcNodecismaCell/nodes/waslxcNodecisma/servers/server1|resources.xml#J2CActivationSpec_1406635457023)', '[-name CISMASpracovanieRFOZDAS -jndiName jms/CISMASpracovanieRFOZDAS -destinationJndiName jms/CISMASpracovanieRFOZDQueue -description -busName cismaBus -clientId -durableSubscriptionHome waslxcNodecisma.server1-cismaBus -destinationType javax.jms.Queue -messageSelector -acknowledgeMode Auto-acknowledge -subscriptionName -maxBatchSize 1 -maxConcurrency 1 -subscriptionDurability NonDurable -shareDurableSubscriptions InCluster -authenticationAlias cismaspracovanierfozdReceiver -readAhead Default -target -targetType BusMember -targetSignificance Preferred -targetTransportChain -providerEndPoints -shareDataSourceWithCMP false -consumerDoesNotModifyPayloadAfterGet false -forwarderDoesNotModifyPayloadAfterSet false -alwaysActivateAllMDBs false -retryInterval 30 -autoStopSequentialMessageFailure 0 -failingMessageDelay 0]') 
+
+
+http://waslxc.ux.gratex.com:9177/cismawc/SOAP_WEB/CisWebService
+
+http://waslxc.ux.gratex.com:9177/cismawc/SOAP_WEB/CismaWebService/services/CismaService?wsdl
+
+http://waslxc.ux.gratex.com:9177/cismawc/SOAP_WEB/CismaWebService/services/CismaService?wsdl
+
+
+
+sudo mount --bind /w /home/was/tfs
+
+sudo mount --bind /var/lib/lxc/waslxc/rootfs/home/was/tfs /w
+
+sudo mount --bind /w /var/lib/lxc/waslxc/rootfs/home/was/tfs
+
+ls -s ll

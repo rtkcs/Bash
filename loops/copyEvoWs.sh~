@@ -1,0 +1,69 @@
+#!/bin/bash
+# Author:	rtakacs
+# Date:		20140812
+# Purpose:	copy EVO workspace from azelenekpc, from a coleague
+
+
+#sudo mkdir -p /mnt/azelenakpc/workpacescd 
+#sudo mount.cifs //azelenakpc.hq.gratex.com/workspaces  /mnt/azelenakpc/workpaces/ -o "ro,nounix,domain=HQ,username=rtakacs,password=xxxxxx"
+
+#cd /w/MVSR/NEV/EVO/MVSR.NEV.EVO-Trunk/MVSR/NEV/EVO/J2EE/was
+#chmod -R u+rwx *
+
+
+# colors
+RED='\e[0;31m'
+GREEN='\e[0;32m'
+YELLOW='\e[1;33m'
+NC='\e[0m'	# No Color
+
+PATTERNS="EJSLocal*.java EJSRemote*.java EJSStateful*.java EJSStateless*.java _EJS*_Tie.java *_Stub.java"
+
+DIR="/mnt/azelenakpc/workpaces/MVSR/NEV/EVO/MVSR.NEV.EVO-Trunk/MVSR/NEV/EVO/J2EE/was/"
+DIRS=`ls -A $DIR`
+
+
+LOCAL_WS="/w/MVSR/NEV/EVO/MVSR.NEV.EVO-Trunk/MVSR/NEV/EVO/J2EE/was"
+
+JAVA_FILE={x%.java}
+
+echo $DIRS
+
+for dir in $DIRS
+do 
+	
+	if [[ $dir != ".metadata" && $dir != "New" && $dir != "Folder" && $dir != "(2)" ]]
+	then
+		
+		if [ -d $DIR/$dir  ]
+		then
+			echo -en "${YELLOW}***************** PROJECT $dir${NC}\n"
+			cd $DIR/$dir 
+	
+			for pattern in $PATTERNS
+			do
+				echo -en "${GREEN}$pattern${NC}\n"
+				echo  $PWD
+				FILES=`find -name $pattern`
+				
+				for file in $FILES
+				do
+					LOCAL_FILE=$LOCAL_WS/$dir/$file
+					LOCAL_DIR=`dirname $LOCAL_FILE`
+#					LOCAL_DIR=${LOCAL_FILE%.java}
+					echo LOCAL_FILE=$LOCAL_FILE
+					echo LOCAL_DIR=$LOCAL_DIR
+					if [ ! -d $LOCAL_DIR  ]; then # if directory does not exist, then create it
+						mkdir --parents $LOCAL_DIR
+					fi
+					cp --verbose  $file $LOCAL_FILE
+				done
+
+			done
+		fi
+	fi
+	
+done	
+
+
+#END
